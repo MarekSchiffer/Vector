@@ -52,13 +52,15 @@ void VectorReplace(vector* v, const void* elemAddr, long position) {
 
 }
 
+static void VectorGrowth(vector* v) {
+		v->alloclength <<=1;
+		v->array = realloc(v->array,v->alloclength*v->elmSize);
+}
+
 void VectorInsert(vector* v, const void* elemAddr, long position) {
 	assert(position >= 0 && position <= v->logicallength);
 
-	if ( v->logicallength+1 == v->alloclength) {
-		v->alloclength = v->alloclength << 1;
-		v->array = realloc(v->array,v->alloclength*v->elmSize);
-	}
+	if ( v->logicallength+1 == v->alloclength)  VectorGrowth(v);
 
 	long bytesToMove = (char*)v->array + v->logicallength*v->elmSize - (char*)v->array+(position+1)*v->elmSize;
 
@@ -69,10 +71,8 @@ void VectorInsert(vector* v, const void* elemAddr, long position) {
 }
 
 void VectorAppend(vector* v, const void* elemAddr) {
-	if (v->alloclength == v->logicallength) {
-		v->alloclength = v->alloclength << 1;
-		v->array = realloc(v->array,v->alloclength*v->elmSize);
-	}
+
+	if ( v->logicallength+1 == v->alloclength)  VectorGrowth(v);
 	
 	memcpy((char*)v->array+v->logicallength*v->elmSize,elemAddr,v->elmSize);
 	v->logicallength++;
