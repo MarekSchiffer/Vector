@@ -5,7 +5,7 @@ I hope that makes sense to people ;).
 # General:
 The term vector is a horrible choice for what is essential a dynamically allocated array.
 Alternatively the term ListArray is also often used. The difference to an ordinarray array
-is that if you put something at it's place, it stays there. `a[7]= 23;` is not affected by `a[4]=11;`
+is that if something is put in it's place, it stays there. `a[7]= 23;` is not affected by `a[4]=11;`
 unless it's actively taken care of. The same does not hold true for a vector.
 The insertion of `a[4]=11;`, here `VectorInsert(&vector,&pos,4)`, will effect the position of
 all elements behind it. The equivalent when using a Vector is the replace function, i.e.
