@@ -1,24 +1,24 @@
 ## Acknowledgements:
-The header file as well as the function names are written by Jerry Cain @Stanford University.
+The header file as well as the function names are written by Jerry Cain @Stanford University. <br>
 I just implemented the functions. The vecotortest script is entirely written by Jerry Cain. <br>
 I hope that makes sense to people ;).
 # General:
 The term vector is a horrible choice for what is essential a dynamically allocated array.
 Alternatively the term ListArray is also often used. The difference to an ordinarray array
-is that if you put something at it's place, it stays there. a[7]= 23; is not affected by a[4]=12;
+is that if you put something at it's place, it stays there. `a[7]= 23;` is not affected by `a[4]=11;`
 unless it's actively taken care of. The same does not hold true for a vector.
-The insertion of a[4]=12, here VectorInsert(&vector,&pos,4), will effect the position of
+The insertion of `a[4]=11;`, here `VectorInsert(&vector,&pos,4)`, will effect the position of
 all elements behind it. The equivalent when using a Vector is the replace function, i.e.
-a[4]=12 is the same as VectorReplace(&vector,&pos,4); <br>
+`a[4]=11;` is the same as VectorReplace(&vector,&pos,4); <br>
 
 Of course this behaviour is often desired and greatly missed when using a standard array.
-The same goes for deletion. There are never holes in a vector or undesired already removed
+The same goes for deletion. There are never holes in a vector or undesired, already removed
 elements which may happen with a standard array if no extra care is taken.  <br>
 
-The blatant advantage of using a vector is the possibility to dynamically adjust it's size.
-This adjustment, based on the reallocation, is organized on the initial size times two policy.
-The vector has therefore pretty much the same performance as a classic array. The only
-difference being it allocated on the heap, not on the stack. <br>
+The significant advantage of using a vector is the ability to dynamically adjust its size. 
+This adjustment, based on reallocation, follows the policy of doubling the initial size. 
+Therefore, the vector has pretty much the same performance as a classic array, with the only 
+difference being that it is allocated on the heap, not on the stack.  <br>
 
 The provided functions include: <br>
 |   Function            | Time | Description                                                 |
@@ -36,4 +36,6 @@ The provided functions include: <br>
 | `VectorSort`          | O(n²)| Sorts the vector. (Quicksort)                               |
 | `VectorMap`           | O(n) | Applies a function to each element of the vector.           |
 
+### License
 
+**© 2011 Marek Schiffer**
